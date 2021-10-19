@@ -1,0 +1,9 @@
+{
+    "name": "temperature-esp8266",
+    "version": "0.0.1",
+    "description": "Testing Using Socket IO and Express JS Backend",
+    "dependencies": {
+        "express": "^4.17.1",
+        "socket.io": "^4.3.0"
+    }
+}
