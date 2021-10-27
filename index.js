@@ -6,7 +6,8 @@ const { Server } = require("socket.io");
 const io = new Server(server);
 
 const path = require('path')
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use('/static', express.static(path.join(__dirname, 'public')));
+app.use('/reveal', express.static(path.join(__dirname,'node_modules/reveal.js/')));
 app.use(express.json());
 
 app.get('/project', (req, res) => {
@@ -15,6 +16,10 @@ app.get('/project', (req, res) => {
 
 app.get('/',(req,res)=>{
   res.sendFile(__dirname + '/index.html');
+})
+
+app.get('/presentation',(req,res)=>{
+  res.sendFile(__dirname + '/presentation.html');
 })
 
 //Error In Handling MiddleWare
