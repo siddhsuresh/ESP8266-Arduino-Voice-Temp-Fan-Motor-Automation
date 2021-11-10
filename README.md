@@ -1,7 +1,6 @@
 # ArduinoVoiceTempControlled
 ## CSE2006 J Component Review 02
-### Team 21
-#### Siddharth Suresh & Penta Revanth
+### Team 21 - Siddharth Suresh & Penta Revanth
 
 ### Hardware Used
 * NodeMCU ESP8266 MicroController
