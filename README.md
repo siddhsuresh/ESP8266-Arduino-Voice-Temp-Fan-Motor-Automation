@@ -45,3 +45,11 @@ npm run build
 ```
 npm run serve
 ```
+
+### File Structure
+* Server Logic is present in **index.js** file in the root directory
+* Database Conectivity and Logic is present in the **database.js** file in the root directory
+* The Arduino Code That Controls the Logic For the ESP8266 MicroController is present as **sketch_oct19a.ino** file
+* Static files [css/javascript/images/videos] are present in their respective public folders and is represented using the static url path in the server
+* index.html contains the source code for the landing page of the project
+* fan.html is the main project page and contains the Socket.IO connection, threeJS Fan Simulation and Temperature and Humidity Display
