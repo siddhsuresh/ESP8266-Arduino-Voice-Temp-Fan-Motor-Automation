@@ -18,7 +18,7 @@ const opts = {
 
 var httpsServer = https.createServer(opts, app);
 httpsServer.listen(5001, function(){
-  console.log("HTTPS on port " + 3001);
+  console.log("HTTPS on port " + 5001);
 })
 
 app.use("/static", express.static(path.join(__dirname, "public")));
