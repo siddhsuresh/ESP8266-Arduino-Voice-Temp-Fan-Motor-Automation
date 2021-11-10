@@ -2,9 +2,7 @@
 ## CSE2006 J Component Review 02
 
 ### Hardware Used
-![ESP8266](public/img/NodeMCU-ESP8266-Pinout.jpg)
 * NodeMCU ESP8266 MicroController
- ![DHT11 Sensor](public/img/DHT11–Temperature-Sensor-Pinout-3Pin.jpg)
 * DHT11 Temperature and Humidity Sensor
 
 ### Technologies Used
