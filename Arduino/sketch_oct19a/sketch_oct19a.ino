@@ -14,8 +14,8 @@
 ESP8266WiFiMulti WiFiMulti;
 SocketIOclient socketIO;
 
-const char* ssid = "";
-const char* password = "";
+const char* ssid = ""; //WiFi Name
+const char* password = ""; //WiFi Password
 
 #define dht_dpin 0
 DHT dht(dht_dpin, DHTTYPE);
