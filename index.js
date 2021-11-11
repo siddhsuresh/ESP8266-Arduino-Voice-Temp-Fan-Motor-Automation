@@ -6,6 +6,7 @@ const server = http.createServer(app);
 var fs = require('fs');
 var https = require('https');
 const path = require("path");
+var compression = require('compression');
 
 //Import the insert,read and createTable from database.js
 const { insert, read, db} = require("./database.js");
@@ -18,11 +19,12 @@ const opts = {
 
 var httpsServer = https.createServer(opts, app);
 httpsServer.listen(5001, function(){
-  console.log("HTTPS on port " + 5001);
+  console.log("HTTPS on port " + 3001);
 })
 
+//MiddleWare
 app.use("/static", express.static(path.join(__dirname, "public")));
-
+app.use(compression()); //Compress all routes
 app.use(cors());
 app.use(express.json());
 
