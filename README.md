@@ -13,6 +13,7 @@
 * Arduino Framework To Interface with the ESP8266 MicroController
 * TailwindCSS for the Design of the Website
 * Cloudflared Quick Tunnels to provide Connection between the Internet and the Local Server
+* OpenSSL to connect the server through HTTPS
 
 ### Instructions To Run The Project
 
