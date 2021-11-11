@@ -14,8 +14,8 @@
 ESP8266WiFiMulti WiFiMulti;
 SocketIOclient socketIO;
 
-const char* ssid = "ASUS ZENFONE";
-const char* password = "siddharth1243";
+const char* ssid = "";
+const char* password = "";
 
 #define dht_dpin 0
 DHT dht(dht_dpin, DHTTYPE);
@@ -110,7 +110,7 @@ void setup() {
     Serial.printf("[SETUP] WiFi Connected %s\n", ip.c_str());
 
     // server address, port and URL
-    socketIO.begin("192.168.43.120", 3000, "/socket.io/?EIO=4");
+    socketIO.begin("", 3000, "/socket.io/?EIO=4");
 
     // event handler
     socketIO.onEvent(socketIOEvent);
