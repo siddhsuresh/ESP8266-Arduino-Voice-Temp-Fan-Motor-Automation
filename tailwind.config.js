@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'jit',
   purge: [
-    './*.html',
+    './src/*.html',
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -18,4 +18,9 @@ module.exports = {
     require('@tailwindcss/typography'),
     require('daisyui'),
   ],
+  daisyui: {
+    themes: [
+      'corporate'
+    ],
+  },
 }

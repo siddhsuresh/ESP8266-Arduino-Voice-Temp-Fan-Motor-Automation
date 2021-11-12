@@ -13,8 +13,9 @@ const { insert, read, db} = require("./database.js");
 //To Create the table if it does not already exist
 db.run("CREATE TABLE IF NOT EXISTS weather (date TEXT, temperature REAL, humidity REAL)");
 const opts = {
-  key: fs.readFileSync('cert/file.pem'),
-  cert: fs.readFileSync('cert/file.crt')
+  key: fs.readFileSync('cert/private-key.pem'),
+  cert: fs.readFileSync('cert/cert.pem'),
+  pfx: fs.readFileSync('cert/cert.pfx')
 }
 
 var httpsServer = https.createServer(opts, app);

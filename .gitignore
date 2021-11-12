@@ -106,8 +106,6 @@ dist
 # For Parcel Cache 
 .parcel-cache
 
-# For Private Key
-cert\file.pem
-
 .vscode
-cert/file.pem
+
+cert/
