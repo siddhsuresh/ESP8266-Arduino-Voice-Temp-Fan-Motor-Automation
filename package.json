@@ -1,12 +1,20 @@
 {
     "name": "temperature-esp8266",
-    "version": "0.0.2",
+    "version": "0.0.3",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/siddhsuresh/ArduinoVoiceTempControlled.git"
+    },
+    "license": "GPL-3.0 License",
+    "private": true,
     "description": "Testing Using Socket IO and Express JS Backend",
     "dependencies": {
         "@tailwindcss/typography": "^0.4.1",
+        "compression": "^1.7.4",
         "cors": "^2.8.5",
         "daisyui": "^1.14.5",
         "express": "^4.17.1",
+        "parcel": "^2.0.1",
         "socket.io": "^4.3.0",
         "sqlite3": "^5.0.2"
     },
@@ -16,9 +24,11 @@
         "tailwindcss": "^2.2.17"
     },
     "scripts": {
-        "dev": "npx tailwindcss -o ./public/css/tailwind.css --watch",
-        "build": "npx tailwindcss -o ./public/css/tailwind.css --minify",
-        "start": "node index.js",
+        "tailwind-dev": "npx tailwindcss -o ./src/public/css/tailwind.css --watch",
+        "parcel-dev": "parcel watch src/index.html src/Fan.html",
+        "prebuild": "npx tailwindcss -o ./src/public/css/tailwind.css --minify",
+        "build": "parcel build src/index.html src/Fan.html",
+        "server": "node server.js",
         "serve": "cloudflared tunnel -url localhost:3000"
     },
     "packageManager": "yarn@3.1.0"

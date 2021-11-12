@@ -102,3 +102,12 @@ dist
 
 # TernJS port file
 .tern-port
+
+# For Parcel Cache 
+.parcel-cache
+
+# For Private Key
+cert\file.pem
+
+.vscode
+cert/file.pem

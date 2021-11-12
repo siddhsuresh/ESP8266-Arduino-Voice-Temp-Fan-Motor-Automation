@@ -2,7 +2,7 @@
 
 <head>
   <title>Fan Test</title>
-  <link rel="stylesheet" href="static/css/tailwind.css" />
+  <link rel="stylesheet" href="./public/css/tailwind.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
@@ -81,8 +81,11 @@
       </div>
     </div>
     <div class="navbar-end">
-      <a class="btn btn-square btn-ghost">
-        <img src="static/img/GitHub-Mark-32px.png" class="rounded-lg" />
+	<button id="connection" type="button" class="mr-2 bg-red-600 text-white p-2 rounded  leading-none flex items-center">
+      	ESP8266 Disconnected
+    </button>
+      <a href="https://github.com/siddhsuresh/ArduinoVoiceTempControlled" class="btn btn-square btn-ghost">
+        <img src="./public/img/GitHub-Mark-32px.png" class="rounded-lg" />
       </a>
     </div>
   </div>
@@ -170,9 +173,13 @@
     }
   };
   xhr.send();
-
+  setInterval(function() {
+	$("#connection").text("ESP8266 Disconnected");
+	$("#connection").removeClass("bg-green-600");
+  $("#connection").addClass("bg-red-600");
+}, 8500);
 </script>
-<script src="/socket.io/socket.io.js"></script>
+<script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
 <script>
 	if (window.location.protocol == "https:"){
         var socket = io({
@@ -198,7 +205,9 @@
     console.log(
       "Sensor Readings " + msg["temperature"] + " " + msg["humidity"]
     );
-   
+	$("#connection").text("ESP8266 Connected");
+	$("#connection").removeClass("bg-red-600");
+    $("#connection").addClass("bg-green-600");
     $("#temperature").text(msg["temperature"]);
     $("#humidity").text(msg["humidity"]);
     //Change the background color of the labels based on the readings
@@ -227,7 +236,7 @@
     });
   });
 </script>
-<script src="static/js/voiceCommands.js"></script>
+<script src="./public/js/voiceCommands.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<script src="static/js/threejsFan.js"></script>
+<script src="./public/js/threejsFan.js"></script>
 </html>

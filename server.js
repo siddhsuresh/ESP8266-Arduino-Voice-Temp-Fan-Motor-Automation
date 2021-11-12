@@ -6,32 +6,34 @@ const server = http.createServer(app);
 var fs = require('fs');
 var https = require('https');
 const path = require("path");
+var compression = require('compression');
 
 //Import the insert,read and createTable from database.js
 const { insert, read, db} = require("./database.js");
 //To Create the table if it does not already exist
 db.run("CREATE TABLE IF NOT EXISTS weather (date TEXT, temperature REAL, humidity REAL)");
 const opts = {
-  key: fs.readFileSync('file.pem'),
-  cert: fs.readFileSync('file.crt')
+  key: fs.readFileSync('cert/file.pem'),
+  cert: fs.readFileSync('cert/file.crt')
 }
 
 var httpsServer = https.createServer(opts, app);
 httpsServer.listen(5001, function(){
-  console.log("HTTPS on port " + 3001);
+  console.log("HTTPS on port " + 5001);
 })
 
-app.use("/static", express.static(path.join(__dirname, "public")));
-
+//MiddleWare
+app.use(compression()); //Compress all routes
+app.use("/", express.static(path.join(__dirname, "dist")));
 app.use(cors());
 app.use(express.json());
 
 app.get("/project", (req, res) => {
-  res.sendFile(__dirname + "/Fan.html");
+  res.sendFile(__dirname + "/dist/Fan.html");
 });
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/dist/index.html");
 });
 
 //Create an API endpoint to get all the data from the database
