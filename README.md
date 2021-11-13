@@ -25,31 +25,32 @@ git clone <this-branch> .
 cd <directory-name>
 ```
 ```
-npm install
+yarn install
 ```
 
 ### To Run the Server Locally
 ```
-npm run server
+yarn server
 ```
 
 ### When Changing the CSS in the HTML Files
 ```
-npm run tailwind-dev
+yarn tailwind-dev
 ```
 ### When Making Changes To The Src Files for Hot Re-Loading
 ```
-npm run parcel-dev
+yarn parcel-dev
 ```
 
 ### Optimise and Build the Source Code
 ```
-npm run build
+yarn tailwind-build
+yarn parcel-build
 ```
 
 ### To Run using Cloudflare Tunnels 
 ```
-npm run serve
+yarn serve
 ```
 
 ### File Structure
