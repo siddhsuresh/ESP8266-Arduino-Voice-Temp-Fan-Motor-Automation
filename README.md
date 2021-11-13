@@ -45,6 +45,8 @@ yarn parcel-dev
 ### Optimise and Build the Source Code
 ```
 yarn tailwind-build
+```
+```
 yarn parcel-build
 ```
 
