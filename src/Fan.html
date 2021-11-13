@@ -183,11 +183,8 @@
 <script>
 	if (window.location.protocol == "https:"){
         var socket = io({
-    withCredentials: true,
-    extraHeaders: {
-      "my-custom-header": "test"
-    }
-  });    
+		withCredentials: true,
+	  });    
     } else {
         var socket = io();
     };

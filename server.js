@@ -8,6 +8,7 @@ var https = require('https');
 const path = require("path");
 var compression = require('compression');
 var expressStaticGzip = require('express-static-gzip');
+const { instrument } = require("@socket.io/admin-ui");
 
 //Import the insert,read and createTable from database.js
 const { insert, read, db} = require("./database.js");
@@ -20,8 +21,8 @@ const opts = {
 }
 
 var httpsServer = https.createServer(opts, app);
-httpsServer.listen(5001, function(){
-  console.log("HTTPS on port " + 5001);
+httpsServer.listen(3001, function(){
+  console.log("HTTPS on port " + 3001);
 })
 
 //MiddleWare
@@ -33,6 +34,7 @@ app.use('/', expressStaticGzip(path.join(__dirname, "dist"), {
       res.setHeader("Cache-Control", "public, max-age=86400");
    }
 }));
+app.use('/', express.static(path.join(__dirname, '/admin-socketio/dist/')))
 app.use(cors());
 app.use(express.json());
 
@@ -42,6 +44,10 @@ app.get("/project", (req, res) => {
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/dist/index.html");
+});
+
+app.get("/admin", (req, res) => {
+  res.sendFile(__dirname + "/admin-socketio/dist/index.html");
 });
 
 //Create an API endpoint to get all the data from the database
@@ -59,10 +65,13 @@ app.use(function (err, req, res, next) {
 //Socket.IO
 const io = require("socket.io")(server, {
   cors: {
-    methods: ["GET", "POST"],
-    allowedHeaders: ["my-custom-header"],
     credentials: true
   }
+});
+
+instrument(io, {
+  auth: false,
+  namespaceName : "/"
 });
 
 io.attach(httpsServer);
@@ -93,12 +102,3 @@ io.on("connection", (socket) => {
 server.listen(3000, () => {
   console.log("listening on *:3000");
 });
-
-// //Test the insert function
-// insert(10, 20);
-// //Test the read function by asserting that the inserted data is the same as the data read from the database
-// read().then(data => {
-//   console.log(data.temperature);
-//   console.log(data.humidity);
-//   console.log(data.date);
-// });
