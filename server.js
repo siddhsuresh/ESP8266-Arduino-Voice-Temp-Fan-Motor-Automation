@@ -7,6 +7,7 @@ var fs = require('fs');
 var https = require('https');
 const path = require("path");
 var compression = require('compression');
+var expressStaticGzip = require('express-static-gzip');
 
 //Import the insert,read and createTable from database.js
 const { insert, read, db} = require("./database.js");
@@ -25,7 +26,13 @@ httpsServer.listen(5001, function(){
 
 //MiddleWare
 app.use(compression()); //Compress all routes
-app.use("/", express.static(path.join(__dirname, "dist")));
+app.use('/', expressStaticGzip(path.join(__dirname, "dist"), {
+    enableBrotli: true,
+    orderPreference: ['br', 'gz'],
+	setHeaders: function (res, path) {
+      res.setHeader("Cache-Control", "public, max-age=86400");
+   }
+}));
 app.use(cors());
 app.use(express.json());
 
