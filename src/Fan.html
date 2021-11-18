@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fan Test</title>
+  <title>Project Demo | CSE2006 Review 02</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="manifest" href="favicon/site.webmanifest">
   <link rel="stylesheet" href="./public/css/tailwind.css" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet" />
   <style>
@@ -11,29 +15,44 @@
       font-family: 'Poppins', sans-serif;
     }
 
-    #world {
+    body {
       background: #ebe5e7;
     }
-
+	canvas{
+   width: 100% !important;
+   height: 100% !important;
+   display: block !important;
+	}
+	
     #container {
       position: relative;
       width: 100%;
       height: 100%;
-      overflow: hidden;
     }
-
     #labels {
       position: absolute;
-      left: 37%;
-      margin-left: -40px;
-      top: 8%;
+      left: 27%;
+      margin: 8%;
+      top: 2%;
     }
 
-    #labels1 {
+   #labels1 {
       position: absolute;
       right: 5%;
+      margin: 4%;
       top: 10%;
     }
+	@media screen and (max-width: 1200px) {
+		#labels {
+			right:2%;
+			margin:0%;			
+		}
+		#labels1 {
+		  right:0%;
+		  left:2%;
+		  top: 50%;
+		}
+	}
   </style>
 </head>
 
@@ -91,18 +110,18 @@
   </div>
   <div id="container">
     <div id="world"></div>
-    <div id="labels" class="text-center hero-content prose prose-lg">
+    <div id="labels" class="!text-center prose prose-lg">
       <div class="max-w-md">
         <h1 class="mb-5 text-5xl font-bold">Arduino & ESP8266</h1>
         <p class="mb-5">
           Testing the Connectivity of ESP8266 using the Arduino Framework
           Using SocketIO Websockets In ExpressJS and NodeJS BackEnd
-        </p>
+        </p> 
         <div class="divider"></div>
         <div class="p-6 card">
           <div class="form-control">
             <label class="cursor-pointer label">
-              <span class="label-text">
+              <span class="label-text"> 
                 <h6 class="mb-5 text-xl font-bold">Toggle the Switch</h6>
               </span>
               <input id="switch" type="checkbox" class="toggle toggle-lg toggle-primary" />
@@ -133,7 +152,7 @@
     <div id="labels1" class="py-10 m-auto max-w-xs">
       <div id="card" class="card text-center shadow-2xl">
         <div class="card-body">
-          <h2 classs="font-bold text-lg">Latest Reading At</h2>  
+          <h2 classs="font-bold text-lg">Latest Reading At</h2>   
           <h3 id="myDate" class="font-extrabold text-lg"></h3>
           <h1 class="m-3 text-primary font-extrabold text-2xl">
             Temperature
@@ -157,6 +176,7 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
   //Use the API endpoint to get the latest reading
+  var isConnected = false;
   var url = "/api/getReading";
   var xhr = new XMLHttpRequest();
   xhr.open("GET", url, true);
@@ -174,10 +194,15 @@
   };
   xhr.send();
   setInterval(function() {
+  if(isConnected == false){
 	$("#connection").text("ESP8266 Disconnected");
 	$("#connection").removeClass("bg-green-600");
-  $("#connection").addClass("bg-red-600");
-}, 8500);
+    $("#connection").addClass("bg-red-600");
+  }
+}, 8050);
+	setInterval(function() {
+		isConnected = false;
+	},7050);
 </script>
 <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"></script>
 <script>
@@ -202,6 +227,7 @@
     console.log(
       "Sensor Readings " + msg["temperature"] + " " + msg["humidity"]
     );
+	isConnected = true;
 	$("#connection").text("ESP8266 Connected");
 	$("#connection").removeClass("bg-red-600");
     $("#connection").addClass("bg-green-600");
@@ -211,13 +237,16 @@
     if (msg["temperature"] > 30) {
       //Add css class to id card
       //Remove all other bg classes
-      $("#card").removeClass("bg-accent-focus");
+      $("#card").removeClass("bg-green-300");
+	  $("#card").removeClass("bg-blue-300");
       $("#card").addClass("bg-red-300");
     } else if (msg["temperature"] > 24.5) {
-      $("#card").removeClass("bg-accent-focus");
+      $("#card").removeClass("bg-red-300");
+	  $("#card").removeClass("bg-blue-300");
       $("#card").addClass("bg-green-300");
     } else {
-      $("#card").removeClass("bg-accent-focus");
+      $("#card").removeClass("bg-red-300");
+	  $("#card").removeClass("bg-green-300");
       $("#card").addClass("bg-blue-300");
     }
     

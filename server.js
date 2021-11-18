@@ -4,17 +4,28 @@ const http = require("http");
 var cors = require('cors');
 const server = http.createServer(app);
 var fs = require('fs');
-var https = require('https');
+//var https = require('https');
 const path = require("path");
 var compression = require('compression');
 var expressStaticGzip = require('express-static-gzip');
 const { instrument } = require("@socket.io/admin-ui");
+var port = process.env.PORT || 3000;
 
 //Import the insert,read and createTable from database.js
 const { insert, read, db} = require("./database.js");
 //To Create the table if it does not already exist
 db.run("CREATE TABLE IF NOT EXISTS weather (date TEXT, temperature REAL, humidity REAL)");
-const opts = {
+
+//Use For Heroku Deployment
+//app.all('*', function(req, res, next) {
+//    if (req.headers['x-forwarded-proto'] != 'https')
+//        res.redirect('https://' + req.headers.host + req.url)
+//    else
+//        next() /* Continue to other routes if we're not redirecting */
+//});
+
+//Use For Cloudflare Tunnel Deployment
+/*const opts = {
   key: fs.readFileSync('cert/private-key.pem'),
   cert: fs.readFileSync('cert/cert.pem'),
   pfx: fs.readFileSync('cert/cert.pfx')
@@ -23,7 +34,7 @@ const opts = {
 var httpsServer = https.createServer(opts, app);
 httpsServer.listen(3001, function(){
   console.log("HTTPS on port " + 3001);
-})
+})*/
 
 //MiddleWare
 app.use(compression()); //Compress all routes
@@ -44,6 +55,10 @@ app.get("/project", (req, res) => {
 
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/dist/index.html");
+});
+
+app.get("/slides", (req, res) => {
+  res.sendFile(__dirname + "/dist/slides.html");
 });
 
 app.get("/admin", (req, res) => {
@@ -74,7 +89,7 @@ instrument(io, {
   namespaceName : "/"
 });
 
-io.attach(httpsServer);
+//io.attach(httpsServer);
 
 io.on("connection", (socket) => {
   //Show the socket its id
@@ -99,6 +114,6 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+server.listen(port, () => {
+  console.log("listening on *:"+port);
 });

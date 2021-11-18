@@ -8,7 +8,8 @@ var scene,
   shadowLight,
   backLight,
   light,
-  renderer,
+  renderer, 
+  planeAspectRatio,
   container;
 
 //SCENE
@@ -24,7 +25,7 @@ var HEIGHT,
   windowHalfX,
   windowHalfY,
   mousePos = { x: 0, y: 0 };
-dist = 0;
+var dist = 0;
 
 //INIT THREE JS, SCREEN AND MOUSE EVENTS
 
@@ -36,12 +37,25 @@ function init() {
   fieldOfView = 100;
   nearPlane = 10;
   farPlane = 1000;
+  planeAspectRatio = 16 / 9;
   camera = new THREE.PerspectiveCamera(
     fieldOfView,
     aspectRatio,
     nearPlane,
     farPlane
   );
+  fieldOfView = 50;
+   camera.aspect = window.innerWidth / window.innerHeight;
+	if (camera.aspect > planeAspectRatio) {
+		// window too large
+		const cameraHeight = Math.tan(THREE.MathUtils.degToRad(fieldOfView / 2));
+		const ratio = camera.aspect / planeAspectRatio;
+		const newCameraHeight = cameraHeight / ratio;
+		camera.fov = THREE.MathUtils.radToDeg(Math.atan(newCameraHeight)) * 2;
+	} else {
+		// window too narrow
+		camera.fov = fieldOfView;
+	}
   camera.position.y = 350;
   camera.position.x = -50;
   camera.position.z = 230;
@@ -54,18 +68,22 @@ function init() {
   container.appendChild(renderer.domElement);
   windowHalfX = WIDTH / 2;
   windowHalfY = HEIGHT / 2;
-  window.addEventListener("resize", onWindowResize, false);
 }
 
-function onWindowResize() {
-  HEIGHT = window.innerHeight;
-  WIDTH = window.innerWidth;
-  windowHalfX = WIDTH / 2;
-  windowHalfY = HEIGHT / 2;
-  renderer.setSize(WIDTH, HEIGHT);
-  camera.aspect = WIDTH / HEIGHT;
-  camera.updateProjectionMatrix();
-}
+window.addEventListener('resize', () => {	
+	camera.aspect = window.innerWidth / window.innerHeight;
+	
+	if (camera.aspect > planeAspectRatio) {
+		// window too large
+		const cameraHeight = Math.tan(THREE.MathUtils.degToRad(fieldOfView / 2));
+		const ratio = camera.aspect / planeAspectRatio;
+		const newCameraHeight = cameraHeight / ratio;
+		camera.fieldOfView = THREE.MathUtils.radToDeg(Math.atan(newCameraHeight)) * 2;
+	} else {
+		// window too narrow
+		camera.fieldOfView = fieldOfView;
+	}
+})
 
 function createLights() {
   light = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.5);
@@ -83,17 +101,6 @@ function createLights() {
   scene.add(backLight);
   scene.add(light);
   scene.add(shadowLight);
-}
-
-function createFloor() {
-  floor = new THREE.Mesh(
-    new THREE.PlaneBufferGeometry(1000, 500),
-    new THREE.MeshBasicMaterial({ color: 0xebe5e7 })
-  );
-  floor.rotation.x = -Math.PI / 2;
-  floor.position.y = -100;
-  floor.receiveShadow = true;
-  scene.add(floor);
 }
 
 function createFan() {
@@ -188,7 +195,6 @@ function render() {
 
 init();
 createLights();
-createFloor();
 createFan();
 loop();
 

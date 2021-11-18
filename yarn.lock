@@ -629,6 +629,14 @@
     globals "^13.2.0"
     nullthrows "^1.1.1"
 
+"@parcel/packager-raw-url@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@parcel/packager-raw-url/-/packager-raw-url-2.0.1.tgz#646466eb3b216e1421323987c5e9ed635963795e"
+  integrity sha512-m8ixkDjJ0RqY2U3Q+ASnphTG1n46jZ/CnRkvT8Kj5MyxtpDX69ri3/C1/b56r6daeemj0laM5lqkr9MrKsdacw==
+  dependencies:
+    "@parcel/plugin" "^2.0.1"
+    "@parcel/utils" "^2.0.1"
+
 "@parcel/packager-raw@^2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@parcel/packager-raw/-/packager-raw-2.0.1.tgz#08516692e6050debc540fab4b36b078edb8ce492"
@@ -872,6 +880,16 @@
     posthtml-parser "^0.10.1"
     posthtml-render "^3.0.0"
     semver "^5.4.1"
+
+"@parcel/transformer-webmanifest@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@parcel/transformer-webmanifest/-/transformer-webmanifest-2.0.1.tgz#17ff113c58638191f267671dd8c82f3d4a0c1fe0"
+  integrity sha512-yv8x8LvIX/MbZ/xXoqqQktYBvVCffKXK6Ak4Ig4DyRBmmcrYJxwWuyQpkpzXhuIFW0jPq8rz4hgoQHnV0teWwg==
+  dependencies:
+    "@parcel/diagnostic" "^2.0.1"
+    "@parcel/plugin" "^2.0.1"
+    "@parcel/utils" "^2.0.1"
+    json-source-map "^0.6.1"
 
 "@parcel/types@^2.0.1":
   version "2.0.1"
@@ -5029,6 +5047,11 @@ reusify@^1.0.4:
   resolved "https://registry.yarnpkg.com/reusify/-/reusify-1.0.4.tgz#90da382b1e126efc02146e90845a88db12925d76"
   integrity sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==
 
+reveal.js@^4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/reveal.js/-/reveal.js-4.2.0.tgz#a36d2dc2c296ad710f367157d1448379b52ecfd7"
+  integrity sha512-ukvq+a/kBu88jCJaQBCkYQ+vjaNUhlI50Y2GlNl4MS6OVnFHL+2Jb6XBZS4MDRWs3lLZAA3wXEu3xKFn8ebX0A==
+
 rgb-regex@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/rgb-regex/-/rgb-regex-1.0.1.tgz#c0e0d6882df0e23be254a475e8edd41915feaeb1"
@@ -5643,6 +5666,11 @@ terser@^5.2.0, terser@^5.8.0:
     commander "^2.20.0"
     source-map "~0.7.2"
     source-map-support "~0.5.20"
+
+three@^0.134.0:
+  version "0.134.0"
+  resolved "https://registry.yarnpkg.com/three/-/three-0.134.0.tgz#d7ad4d85d050da0861bf39749b06ddfb5f17157f"
+  integrity sha512-LbBerg7GaSPjYtTOnu41AMp7tV6efUNR3p4Wk5NzkSsNTBuA5mDGOfwwZL1jhhVMLx9V20HolIUo0+U3AXehbg==
 
 timers-browserify@^2.0.11:
   version "2.0.12"
