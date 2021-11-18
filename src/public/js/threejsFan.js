@@ -8,7 +8,7 @@ var scene,
   shadowLight,
   backLight,
   light,
-  renderer, 
+  renderer,
   planeAspectRatio,
   container;
 
@@ -45,17 +45,17 @@ function init() {
     farPlane
   );
   fieldOfView = 50;
-   camera.aspect = window.innerWidth / window.innerHeight;
-	if (camera.aspect > planeAspectRatio) {
-		// window too large
-		const cameraHeight = Math.tan(THREE.MathUtils.degToRad(fieldOfView / 2));
-		const ratio = camera.aspect / planeAspectRatio;
-		const newCameraHeight = cameraHeight / ratio;
-		camera.fov = THREE.MathUtils.radToDeg(Math.atan(newCameraHeight)) * 2;
-	} else {
-		// window too narrow
-		camera.fov = fieldOfView;
-	}
+  camera.aspect = window.innerWidth / window.innerHeight;
+  if (camera.aspect > planeAspectRatio) {
+    // window too large
+    const cameraHeight = Math.tan(THREE.MathUtils.degToRad(fieldOfView / 2));
+    const ratio = camera.aspect / planeAspectRatio;
+    const newCameraHeight = cameraHeight / ratio;
+    camera.fov = THREE.MathUtils.radToDeg(Math.atan(newCameraHeight)) * 2;
+  } else {
+    // window too narrow
+    camera.fov = fieldOfView;
+  }
   camera.position.y = 350;
   camera.position.x = -50;
   camera.position.z = 230;
@@ -70,20 +70,21 @@ function init() {
   windowHalfY = HEIGHT / 2;
 }
 
-window.addEventListener('resize', () => {	
-	camera.aspect = window.innerWidth / window.innerHeight;
-	
-	if (camera.aspect > planeAspectRatio) {
-		// window too large
-		const cameraHeight = Math.tan(THREE.MathUtils.degToRad(fieldOfView / 2));
-		const ratio = camera.aspect / planeAspectRatio;
-		const newCameraHeight = cameraHeight / ratio;
-		camera.fieldOfView = THREE.MathUtils.radToDeg(Math.atan(newCameraHeight)) * 2;
-	} else {
-		// window too narrow
-		camera.fieldOfView = fieldOfView;
-	}
-})
+window.addEventListener("resize", () => {
+  camera.aspect = window.innerWidth / window.innerHeight;
+
+  if (camera.aspect > planeAspectRatio) {
+    // window too large
+    const cameraHeight = Math.tan(THREE.MathUtils.degToRad(fieldOfView / 2));
+    const ratio = camera.aspect / planeAspectRatio;
+    const newCameraHeight = cameraHeight / ratio;
+    camera.fieldOfView =
+      THREE.MathUtils.radToDeg(Math.atan(newCameraHeight)) * 2;
+  } else {
+    // window too narrow
+    camera.fieldOfView = fieldOfView;
+  }
+});
 
 function createLights() {
   light = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.5);
