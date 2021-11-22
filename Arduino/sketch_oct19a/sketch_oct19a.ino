@@ -17,7 +17,7 @@ SocketIOclient socketIO;
 const char* ssid = "ASUS ZENFONE"; //WiFi Name
 const char* password = "siddharth1243"; //WiFi Password
 
-#define dht_dpin 3
+#define dht_dpin 0 //The GPIO Pin Number Used to Connect To the DHT11 Sensor
 DHT dht(dht_dpin, DHTTYPE);
 
 void socketIOEvent(socketIOmessageType_t type, uint8_t * payload, size_t length) {
