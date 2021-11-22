@@ -14,6 +14,7 @@
 * TailwindCSS for the Design of the Website
 * Cloudflared Quick Tunnels to provide Connection between the Internet and the Local Server
 * OpenSSL to connect the server through HTTPS
+* Parcel Web Bundler
 
 ### Instructions To Run The Project
 
@@ -24,33 +25,42 @@ git clone <this-branch> .
 cd <directory-name>
 ```
 ```
-npm install
+yarn install
 ```
 
 ### To Run the Server Locally
 ```
-npm run start
+yarn server
 ```
 
 ### When Changing the CSS in the HTML Files
 ```
-npm run dev
+yarn tailwind-dev
+```
+### When Making Changes To The Src Files for Hot Re-Loading
+```
+yarn parcel-dev
 ```
 
-### Run Before Pushing Changes To Minify Tailwindcss
+### Optimise and Build the Source Code
 ```
-npm run build
+yarn tailwind-build
+```
+```
+yarn parcel-build
 ```
 
 ### To Run using Cloudflare Tunnels 
 ```
-npm run serve
+yarn serve
 ```
 
 ### File Structure
 * Server Logic is present in **index.js** file in the root directory
 * Database Conectivity and Logic is present in the **database.js** file in the root directory
 * The Arduino Code That Controls the Logic For the ESP8266 MicroController is present as **sketch_oct19a.ino** file
+
+### Source Code in the Src Directory
 * Static files [css/javascript/images/videos] are present in their respective public folders and is represented using the static url path in the server
 * index.html contains the source code for the landing page of the project
 * fan.html is the main project page and contains the Socket.IO connection, threeJS Fan Simulation and Temperature and Humidity Display
