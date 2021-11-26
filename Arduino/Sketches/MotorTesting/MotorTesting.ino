@@ -15,7 +15,6 @@ void setup() {
 	// Turn off motors - Initial state
 	digitalWrite(in1, LOW);
 	digitalWrite(in2, LOW);
-  pinMode(LED, OUTPUT);
 }
 
 void loop() {

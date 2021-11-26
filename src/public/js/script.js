@@ -420,11 +420,8 @@ var rslider = new RangeSlider(element, element.dataset);
 const control = document.getElementById('control');
 document.getElementById('checkcross').addEventListener('click', function(event) {
   if(!document.getElementById('checkcross').checked) {  
-	document.getElementById('auto').checked = true;
   isBlowing=false;
-  setTimeout(() => { control.classList.add('h-0') }, 500);
   } else {
-	document.getElementById('auto').checked = true;
     isBlowing=true;
   }
 });

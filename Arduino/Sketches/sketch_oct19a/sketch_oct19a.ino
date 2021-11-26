@@ -20,6 +20,12 @@ const char* password = "siddharth1243"; //WiFi Password
 #define dht_dpin 0 //The GPIO Pin Number Used to Connect To the DHT11 Sensor
 DHT dht(dht_dpin, DHTTYPE);
 
+// Motor A connections
+int enA = 2;
+int in1 = 4;
+int in2 = 5;
+int LEDout = 15; // Assign LED pin i.e: D1 on NodeMCU
+
 void socketIOEvent(socketIOmessageType_t type, uint8_t * payload, size_t length) {
     DynamicJsonDocument state(1024);
     DeserializationError error;
@@ -54,8 +60,25 @@ void socketIOEvent(socketIOmessageType_t type, uint8_t * payload, size_t length)
               }
               else
               {
+                analogWrite(enA,0);
+                digitalWrite(LEDout, LOW);                
                 digitalWrite(LED,HIGH);
               }
+            }
+            else if(array[0]=="PWM")
+            {
+                int pwm = array[1];
+                Serial.printf("PWM: %d\n",pwm);
+                digitalWrite(in1, LOW);
+                digitalWrite(in2, HIGH);
+                if(pwm){
+                  digitalWrite(LEDout, HIGH);
+                  analogWrite(enA,pwm);
+                }
+                else{
+                  digitalWrite(LEDout, LOW);
+                  analogWrite(enA,0);
+                }                                                
             }
             break;
         }
@@ -81,9 +104,14 @@ void socketIOEvent(socketIOmessageType_t type, uint8_t * payload, size_t length)
 void setup() {
     Serial.begin(115200);
     pinMode(LED, OUTPUT);
+    pinMode(LEDout, OUTPUT);
     //Serial.setDebugOutput(true);
     Serial.setDebugOutput(true);
-
+    pinMode(enA, OUTPUT);
+	  pinMode(in1, OUTPUT);
+	  pinMode(in2, OUTPUT);
+    digitalWrite(in1, LOW);
+	  digitalWrite(in2, LOW);
     Serial.println();
     Serial.println();
     Serial.println();
@@ -110,7 +138,8 @@ void setup() {
     Serial.printf("[SETUP] WiFi Connected %s\n", ip.c_str());
 
     // server address, port and URL
-    socketIO.begin("cse2006-team21.herokuapp.com",80,"/socket.io/?EIO=4");
+    //socketIO.begin("cse2006-team21.herokuapp.com",80,"/socket.io/?EIO=4");
+    socketIO.begin("192.168.43.62",3000,"/socket.io/?EIO=4");
 
     // event handler
     socketIO.onEvent(socketIOEvent);

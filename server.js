@@ -115,9 +115,8 @@ io.on("connection", (socket) => {
   socket.on("Manual",(msg) => {
    //convert the percentage to a pwm value
     var pwm = Math.round(msg * 255 / 100);
-    //Check if the pwm value is within the range of 60-255
-    if(pwm < 60){
-      pwm = 60;
+    if(pwm < 0){
+      pwm = 0;
     }
     else if(pwm > 255){
       pwm = 255;
