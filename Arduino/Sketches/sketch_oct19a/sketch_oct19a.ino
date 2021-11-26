@@ -14,8 +14,8 @@
 ESP8266WiFiMulti WiFiMulti;
 SocketIOclient socketIO;
 
-const char* ssid = "ASUS ZENFONE"; //WiFi Name
-const char* password = "siddharth1243"; //WiFi Password
+const char* ssid = "***"; //WiFi Name
+const char* password = "***"; //WiFi Password
 
 #define dht_dpin 0 //The GPIO Pin Number Used to Connect To the DHT11 Sensor
 DHT dht(dht_dpin, DHTTYPE);
@@ -139,7 +139,7 @@ void setup() {
 
     // server address, port and URL
     //socketIO.begin("cse2006-team21.herokuapp.com",80,"/socket.io/?EIO=4");
-    socketIO.begin("192.168.43.62",3000,"/socket.io/?EIO=4");
+    socketIO.begin("***",3000,"/socket.io/?EIO=4");
 
     // event handler
     socketIO.onEvent(socketIOEvent);
