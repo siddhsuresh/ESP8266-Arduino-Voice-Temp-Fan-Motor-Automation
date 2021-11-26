@@ -50,7 +50,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/project", (req, res) => {
-  res.sendFile(__dirname + "/dist/Fan.html");
+  res.sendFile(__dirname + "/dist/project.html");
 });
 
 app.get("/", (req, res) => {
@@ -111,6 +111,52 @@ io.on("connection", (socket) => {
     //Insert the data into the database
     insert(temp, hum);
     console.log("Temperature: " + temp + " Humidity: " + hum);
+  });
+  socket.on("Manual",(msg) => {
+   //convert the percentage to a pwm value
+    var pwm = Math.round(msg * 255 / 100);
+    //Check if the pwm value is within the range of 60-255
+    if(pwm < 60){
+      pwm = 60;
+    }
+    else if(pwm > 255){
+      pwm = 255;
+    }
+    console.log("Speed: "+msg);
+    console.log("PWM: " + pwm);
+    //Send the pwm value to the arduino
+    io.emit("PWM", pwm);
+  });
+  socket.on("PWM",(msg) => {
+    console.log("PWM: " + msg);
+  });
+  socket.on("Auto",(msg) => {
+    console.log("Auto: " + msg);
+    read().then(data => {
+      var temp = data.temperature;
+      var hum = data.humidity;
+      var speed = (temp-20)*(hum-50)/100;
+      if(speed < 0){
+        speed = 0;
+      }
+      else if(speed > 100){
+        speed = 100;
+      }
+      var pwm = Math.round(speed * 255);
+      //Check if the pwm value is within the range of 0-255
+      if(pwm < 0){
+        pwm = 0;
+      }
+      else if(pwm > 255){
+        pwm = 255;
+      }
+      //Send the pwm value to the arduino
+      if(msg){
+        io.emit("PWM", pwm);
+      }
+      console.log("Speed: "+speed);
+      console.log("PWM: " + pwm);
+      });
   });
 });
 

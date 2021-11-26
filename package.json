@@ -15,7 +15,7 @@
         "express": "^4.17.1",
         "express-static-gzip": "^2.1.1",
         "socket.io": "^4.3.0",
-        "sqlite3": "^5.0.2",
+        "sqlite3": "^5.0.2"
     },
     "devDependencies": {
         "@parcel/compressor-brotli": "^2.0.1",
@@ -33,9 +33,9 @@
     },
     "scripts": {
         "tailwind-dev": "npx tailwindcss -o ./src/public/css/tailwind.css --watch",
-        "parcel-dev": "parcel watch src/index.html src/Fan.html",
+        "parcel-dev": "parcel watch src/index.html src/project.html src/slides.html",
         "tailwind-build": "npx tailwindcss -o ./src/public/css/tailwind.css --minify",
-        "parcel-build": "parcel build src/index.html src/Fan.html src/slides.html",
+        "parcel-build": "parcel build src/index.html src/project.html src/slides.html",
         "server": "node server.js",
         "serve": "cloudflared tunnel -url localhost:3000"
     },
