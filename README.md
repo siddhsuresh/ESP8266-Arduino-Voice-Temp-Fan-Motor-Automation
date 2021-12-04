@@ -1,5 +1,5 @@
 # ArduinoVoiceTempControlled
-## CSE2006 J Component Review 02
+## CSE2006 J Component Review 03
 ### Team 21 - Siddharth Suresh & Penta Revanth
 
 ### Hardware Used
@@ -12,8 +12,7 @@
 * Socket.IO For Implementation of WebSocket Protocol
 * Arduino Framework To Interface with the ESP8266 MicroController
 * TailwindCSS for the Design of the Website
-* Cloudflared Quick Tunnels to provide Connection between the Internet and the Local Server
-* OpenSSL to connect the server through HTTPS
+* Reveal.JS for the Presentation
 * Parcel Web Bundler
 
 ### Instructions To Run The Project
@@ -25,34 +24,34 @@ git clone <this-branch> .
 cd <directory-name>
 ```
 ```
-yarn install
+npm install
 ```
 
 ### To Run the Server Locally
 ```
-yarn server
+npm run server
 ```
 
 ### When Changing the CSS in the HTML Files
 ```
-yarn tailwind-dev
+npm run tailwind-dev
 ```
 ### When Making Changes To The Src Files for Hot Re-Loading
 ```
-yarn parcel-dev
+npm run parcel-dev
 ```
 
 ### Optimise and Build the Source Code
 ```
-yarn tailwind-build
+npm run tailwind-build
 ```
 ```
-yarn parcel-build
+npm run parcel-build
 ```
 
-### To Run using Cloudflare Tunnels 
+### To Run using Cloudflare Tunnels [Not Used Anymore]
 ```
-yarn serve
+npm run serve
 ```
 
 ### File Structure
