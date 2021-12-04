@@ -8,7 +8,7 @@
 #include <WebSocketsClient.h>
 #include <SocketIOclient.h>
 #include <Hash.h>
-#include "DHT.h"        // including the library of DHT11 temperature and humidity sensor
+#include <DHT.h>        // including the library of DHT11 temperature and humidity sensor
 #define DHTTYPE DHT11   // DHT 11
 #define LED D0
 ESP8266WiFiMulti WiFiMulti;
@@ -138,8 +138,7 @@ void setup() {
     Serial.printf("[SETUP] WiFi Connected %s\n", ip.c_str());
 
     // server address, port and URL
-    //socketIO.begin("cse2006-team21.herokuapp.com",80,"/socket.io/?EIO=4");
-    socketIO.begin("192.168.43.62",3000,"/socket.io/?EIO=4");
+    socketIO.begin("cse2006-team21.herokuapp.com",80,"/socket.io/?EIO=4");
 
     // event handler
     socketIO.onEvent(socketIOEvent);

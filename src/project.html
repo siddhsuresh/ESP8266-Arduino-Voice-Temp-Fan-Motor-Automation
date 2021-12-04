@@ -3,6 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <title>Project Demo | CSE2006 Final Review</title>
+  <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="favicon/site.webmanifest" />
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css'><link rel="stylesheet" href="./public/css/style.css">
   <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/daisyui/1.16.2/full.css'>
   <link
@@ -79,15 +97,15 @@
             mt-2
             text-lg
             font-semibold
-            bg-green-300
+            bg-red-300
             rounded-lg
             md:mt-0 md:ml-4
           "
           href="#"
-          >ESP8266 Connected</a
+          >ESP8266 Disconnected</a
         >
         <a
-          href="/"
+          href="/home"
           class="
           px-4
             py-2
@@ -204,7 +222,7 @@
           <div class="form-control w-1/3 mx-auto pt-2">
             <label class="cursor-pointer label">
               <span class="font-bold text-2xl">Voice Commands</span> 
-              <label for="my-modal-2" class="btn btn-ghost modal-button"><i class="fas fa-microphone text-3xl"></i
+              <label id="mic" for="my-modal-2" class="btn btn-ghost modal-button"><i class="fas fa-microphone text-3xl"></i
                 ></label> 
               <input type="checkbox" id="my-modal-2" class="modal-toggle"> 
               <div class="modal">
@@ -238,8 +256,8 @@
           <div class="text-center font-semibold text-lg">Current Fan Speed in PWM: <span id="speed"></span></div>
         </div>
       </div>
-      <div id="control1" class="p-4">
-        <div class="h-full bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+      <div id="control1" class="p-2">
+        <div class="bg-gray-100 bg-opacity-75 px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
           <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">MANUAL SPEED CONTROL</h2>
           <h1 class="title-font sm:text-2xl text-xl font-medium text-gray-900 mb-3 p-5">Control the Fan Speed in % Connected to ESP8266</h1>
           <p class="leading-relaxed mb-3">Click the Slider and Use the 
@@ -263,36 +281,66 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script  src="./public/js/script.js"></script>
-  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous"
-  ></script>
+  <!-- <script src="https://cdn.socket.io/4.3.2/socket.io.min.js" integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs" crossorigin="anonymous" -->
+  <!-- ></script> -->
+  <script src="../node_modules/socket.io/client-dist/socket.io.js"></script>
   <script>
-    var isConnected = false;
     var url = "/api/getReading";
-    var xhr = new XMLHttpRequest();
-    xhr.open("GET", url, true);
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        var temperature = response.temperature;
-        var humidity = response.humidity;
-        var date = response.date;
+    //Do the same thing using Fetch API
+    fetch(url)
+      .then(function (response) {
+        return response.json();
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function (data) {
+        var temperature = data.temperature;
+        var humidity = data.humidity;
+        var date = data.date;
         //Update the DOM with the latest reading
         document.getElementById("myDate").innerText = date;
         document.getElementById("temperature").innerText = temperature;
         document.getElementById("humidity").innerText = humidity;
-      }
-    };
-    xhr.send();
-    setInterval(function () {
-      if (isConnected == false) {
-        $("#connection").text("ESP8266 Disconnected");
-        $("#connection").removeClass("bg-green-600");
-        $("#connection").addClass("bg-red-600");
-      }
-    }, 8050);
-    setInterval(function () {
-      isConnected = false;
-    }, 7050);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    var url2 = "/api/getFanState";
+    //Do the same thing using Fetch API
+    fetch(url2)
+      .then(function (response) {
+        return response.json();
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .then(function (data) {
+        var fanstate = data[0].state;
+        console.log(fanstate);
+        //Convert text fanstate to boolean
+        if (fanstate === "1") {
+          fanstate = true;
+          isBlowing = true;
+        } else {
+          fanstate = false;
+          isBlowing = false;
+        }
+        $("#checkcross").prop("checked", fanstate);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    // setInterval(function () {
+    //   if (isConnected == false) {
+    //     $("#connection").text("ESP8266 Disconnected");
+    //     $("#connection").removeClass("bg-green-300");
+    //     $("#connection").addClass("bg-red-300");
+    //   }
+    // }, 8050);
+    // setInterval(function () {
+    //   isConnected = false;
+    // }, 7050);
     if (window.location.protocol == "https:") {
       var socket = io({
         withCredentials: true,
@@ -309,16 +357,42 @@
         $("#checkcross").prop("checked", false);
         isBlowing = false;
       }
+      if(!$("#checkcross").is(":checked")){
+          $("#speed").text("Fan Stopped");
+      }
     });
+    socket.on("ESP8266",(msg)=>{
+      console.log("ESP8266 Disconnected");
+      $("#connection").text("ESP8266 Disconnected");
+      $("#connection").removeClass("bg-green-300");
+      $("#connection").addClass("bg-red-300");
+    })
     socket.on("PWM", (msg) => {
       console.log("PWM: " + msg);
       $("#speed").text(msg);
     });
+    socket.on("Auto",(msg)=>{
+      $("#auto").prop("checked",msg);
+      if($("#auto").prop("checked") == false && $("checkcross").is(":checked")==true){
+          socket.emit("Manual",rslider.range.value);
+      }
+    })
+    socket.on("Manual",(msg)=>{
+      console.log("Manual: "+msg);
+      $("#auto").checked = false;
+      while(rslider.range.value != msg){
+        if(rslider.range.value < msg){
+          rslider.range.stepUp();
+        }else{
+          rslider.range.stepDown();
+        }
+      } 
+	    rslider.updateCircle();
+    })
     socket.on("Sensor", (msg) => {
       console.log(
         "Sensor Readings " + msg["temperature"] + " " + msg["humidity"]
       );
-      isConnected = true;
       $("#connection").text("ESP8266 Connected");
       $("#connection").removeClass("bg-red-300");
       $("#connection").addClass("bg-green-300");
@@ -345,19 +419,41 @@
       var dateString = date.toLocaleString("en-GB");
       console.log(dateString);
       document.getElementById("myDate").innerText = dateString;
+      //If the auto switch is on, send the PWM value to the ESP8266
+      socket.emit("Auto",$("#auto").is(":checked"));
     });
     $(function () {
       $("#checkcross").click(function () {
+        $("#auto").prop("checked",false);
         console.log("Checkbox clicked");
         socket.emit("Fan State", $("#checkcross").is(":checked"));
+        if(!$("#checkcross").is(":checked")){
+          $("#speed").text("Fan Stopped");
+        }
       });
       $("#auto").click(function () {
-        console.log("Auto clicked");
-        socket.emit("Auto", $("#auto").is(":checked"));
+        if($('#checkcross').is(':checked')){
+          console.log("Auto clicked");
+          if($("#auto").prop("checked") == false){
+            socket.emit("Manual",rslider.range.value);
+          }
+          else{
+            socket.emit("Auto", $("#auto").is(":checked"));
+          }
+        }
+        else{
+          alert("Please Switch On The Fan First");
+          $("#auto").prop("checked", false);
+        }
       });
       $("#updateManual").click(function () {
+        if($('#checkcross').is(':checked')){
         document.getElementById('auto').checked = false;
         socket.emit("Manual", rslider.getSpeed());
+        }
+        else{
+          alert("Please Switch On The Fan First");
+        }
       });
     });
   </script>

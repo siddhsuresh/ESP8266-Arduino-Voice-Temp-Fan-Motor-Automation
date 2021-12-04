@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Home | CSE2006 Review 2</title>
-    <link
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Landing Page | CSE2006 Final Review</title>
+  <link
       rel="apple-touch-icon"
       sizes="180x180"
       href="favicon/apple-touch-icon.png"
@@ -21,25 +21,49 @@
       href="favicon/favicon-16x16.png"
     />
     <link rel="manifest" href="favicon/site.webmanifest" />
-    <link
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
-      rel="stylesheet"
-    />
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:wght@500&display=swap');
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css'><link rel="stylesheet" href="./public/css/Landingstyle.css">
 
-      body{
-      	font-family: 'Merriweather Sans', sans-serif;
-      }
-    </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="./public/css/tailwind.css" />
-  </head>
-  <body class="bg-[#8bd8c6]">
-    <div class="bg-white p-10 m-5 shadow-lg rounded">
-      <main class="dark:bg-gray-800 bg-white relative">
-        <header>
-          <div class="w-full text-gray-700 bg-white text-xl">
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <radialGradient id="Gradient1" cx="50%" cy="50%" fx="50%" fy="50%" r=".5">
+        <animate attributeName="fx" dur="34s" values="0%;3%;0%" repeatCount="indefinite" />
+        <stop offset="0%" stop-color="rgba(255, 0, 255, 1)" />
+        <stop offset="100%" stop-color="rgba(255, 0, 255, 0)" />
+      </radialGradient>
+       <radialGradient id="Gradient2" cx="50%" cy="50%" fx="10%" fy="50%" r=".5">
+        <animate attributeName="fx" dur="23.5s" values="0%;3%;0%" repeatCount="indefinite" />
+        <stop offset="0%" stop-color="rgba(255, 255, 0, 1)" />
+        <stop offset="100%" stop-color="rgba(255, 255, 0, 0)" />
+      </radialGradient>
+      <radialGradient id="Gradient3" cx="50%" cy="50%" fx="50%" fy="50%" r=".5">
+        <animate attributeName="fx" dur="21.5s" values="0%;3%;0%" repeatCount="indefinite" />
+        <stop offset="0%" stop-color="rgba(0, 255, 255, 1)" />
+        <stop offset="100%" stop-color="rgba(0, 255, 255, 0)" />
+      </radialGradient>
+    </defs>
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient1)">
+      <animate attributeName="x" dur="20s" values="25%;0%;25%" repeatCount="indefinite" />
+      <animate attributeName="y" dur="21s" values="0%;25%;0%" repeatCount="indefinite" />
+      <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="17s" repeatCount="indefinite"/>
+    </rect>
+    <rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient2)">
+      <animate attributeName="x" dur="23s" values="-25%;0%;-25%" repeatCount="indefinite" />
+      <animate attributeName="y" dur="24s" values="0%;50%;0%" repeatCount="indefinite" />
+      <animateTransform attributeName="transform" type="rotate" from="0 50 50" to="360 50 50" dur="18s" repeatCount="indefinite"/>
+    </rect>
+      <rect x="0" y="0" width="100%" height="100%" fill="url(#Gradient3)">
+      <animate attributeName="x" dur="25s" values="0%;25%;0%" repeatCount="indefinite" />
+      <animate attributeName="y" dur="26s" values="0%;25%;0%" repeatCount="indefinite" />
+      <animateTransform attributeName="transform" type="rotate" from="360 50 50" to="0 50 50" dur="19s" repeatCount="indefinite"/>
+    </rect>
+  </svg>
+<div class="child">
+	<header>
+          <div class="w-full text-gray-700 bg-white opacity-75 rounded-lg text-xl">
             <div
               x-data="{ open: false }"
               class="
@@ -63,7 +87,7 @@
                     src="./public/img/GitHub-Mark-32px.png"
                     class="rounded-lg"
                 /></a>
-                <p class="font-bold p-4">Review 02</p>
+                <p class="font-bold p-4">Review - 03</p>
                 <button
                   class="
                     rounded-lg
@@ -98,22 +122,21 @@
                 "
               >
                 <a
-                  href="/"
+                  href="/home"
                   class="
-                    px-4
-                    py-2
-                    mt-2
-                    text-lg
-                    font-semibold
-                    text-white
-                    rounded-lg
-                    md:mt-0
-                    hover:bg-gray-200 hover:text-black
-                    focus:text-black
-                    focus:bg-gray-200
-                    focus:outline-none
-                    focus:shadow-outline
-                    bg-gray-700
+                  px-4
+                  py-2
+                  mt-2
+                  text-lg
+                  font-semibold
+                  bg-transparent
+                  rounded-lg
+                  md:mt-0 md:ml-4
+                  hover:bg-gray-700 hover:text-white
+                  focus:bg-gray-200
+                  focus:outline-none
+                  focus:text-black
+                  focus:shadow-outline
                   "
                   href="#"
                   >Home</a
@@ -161,372 +184,12 @@
             </div>
           </div>
         </header>
-        <!-- Center the text over the video-->
-        <div class="pt-5 flex relative z-20 items-center">
-          <div
-            class="
-              container
-              mx-auto
-              px-6
-              flex flex-col
-              justify-between
-              items-center
-              relative
-              py-4
-            "
-          >
-            <div class="flex-1 flex-col">
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/8/87/Arduino_Logo.svg"
-                class="w-28 mx-auto"
-              />
-              <p class="pt-3 text-2xl my-6 text-center dark:text-white">
-                <span class="block p-4 font-bold">Fall Semester 2021</span>
-                <span class="block font-semibold"
-                  >CSE2006 MicroProcessor and Interfacing</span
-                >
-              </p>
-              <h2
-                class="
-                  max-w-3xl
-                  text-2xl
-                  md:text-3xl
-                  font-bold
-                  mx-auto
-                  dark:text-white
-                  text-gray-800 text-center
-                  py-8
-                "
-              >
-                Voice Enabled Temperature Controlled Fan
-                <span class="text-blue-700">Arduino</span> Framework &
-                <span class="text-blue-700">ESP8266</span> MicroController
-              </h2>
-              <p
-                class="text-2xl my-6 text-center dark:text-white font-semibold"
-              >
-                Team <span class="text-blue-700 font-bold">21</span>
-              </p>
-              <p
-                class="
-                  pt-5
-                  text-2xl
-                  my-6
-                  text-center
-                  dark:text-white
-                  font-semibold
-                "
-              >
-                <span class="block"
-                  >Siddharth Suresh
-                  <span class="text-blue-700">20BPS1042</span></span
-                >
-                <span class="block"
-                  >Penta Revanth
-                  <span class="text-blue-700">20BPS1161</span></span
-                >
-              </p>
-            </div>
-          </div>
-        </div>
-        <h2
-          class="text-3xl font-extrabold text-black dark:text-white sm:text-4xl"
-        >
-          <img
-            src="./public/img/project.jpg?as=webp"
-            type="image/webp"
-            class="rounded-lg shadow-xl mx-auto max-h-52"
-          />
-          <br />
-          <div class="block text-center">
-            <span class="py-5 text-2xl">Project </span>
-            <span class="py-5 text-indigo-500 text-2xl">Progress</span>
-          </div>
-        </h2>
-        <ul class="m-5 w-full sm:steps steps !block sm:!inline-grid">
-          <li class="step step-primary">
-            Connection Between Server, Arduino and ESP8266
-          </li>
-          <li class="step step-primary">Interacting With DHT11 Sensor</li>
-          <li class="step step-primary">Enabled Basic Voice Commands</li>
-          <li class="step">Implement Logic For<br />Speed Controls</li>
-          <li class="step">Connection Between DC Fan and ESP8266</li>
-          <li class="step">Final Testing and Improvements</li>
-        </ul>
-        <div class="container mx-auto px-4">
-          <div
-            class="flex flex-col md:flex-row justify-center items-center gap-10"
-          >
-            <img
-              src="./public/img/IMG_20211011_114412685.NIGHT.jpg?as=webp"
-              type="image/webp"
-              class="rounded flex-auto max-w-md max-h-52"
-            />
-            <img
-              src="./public/img/IMG_20211011_114144910.PORTRAIT.jpg?as=webp"
-              type="image/webp"
-              class="rounded flex-auto max-w-md max-h-52"
-            />
-          </div>
-        </div>
-        <div
-          class="
-            sm:flex
-            flex-wrap
-            justify-center
-            items-center
-            text-center
-            gap-8
-            py-5
-            m-2
-          "
-        >
-          <div
-            class="
-              w-full
-              sm:w-1/2
-              md:w-1/2
-              lg:w-1/4
-              px-4
-              py-4
-              bg-white
-              mt-6
-              shadow-lg
-              rounded-lg
-              dark:bg-gray-800
-              bg-green-400
-            "
-          >
-            <h3
-              class="
-                text-2xl
-                sm:text-xl
-                text-grey-700
-                font-semibold
-                dark:text-white
-                py-4
-              "
-            >
-              Server, Arduino, ESP8266
-            </h3>
-            <p class="text-md text-grey-100 dark:text-gray-300 py-4">
-              Web Socket driven Server in order to
-              <span class="font-bold">simulate the working of the Fan</span>
-              by controlling the ESP8266 Microcontroller's In-Build LEDs
-            </p>
-          </div>
-          <div
-            class="
-              w-full
-              sm:w-1/2
-              md:w-1/2
-              lg:w-1/4
-              px-4
-              py-4
-              mt-6
-              sm:mt-16
-              md:mt-20
-              lg:mt-24
-              bg-white
-              shadow-lg
-              rounded-lg
-              dark:bg-gray-800
-              bg-blue-400
-            "
-          >
-            <h3
-              class="
-                text-2xl
-                sm:text-xl
-                text-grey-700
-                font-semibold
-                dark:text-white
-                py-4
-              "
-            >
-              Interacting with the DHT11 Sensor
-            </h3>
-            <p class="text-md text-grey-100 dark:text-gray-300 py-4">
-              Interacting with the Temperature and Humidity Sersor DHT11 using
-              Arduino Libraries in the ESP8266 Microcontroller
-            </p>
-          </div>
-          <div
-            class="
-              w-full
-              sm:w-1/2
-              md:w-1/2
-              lg:w-1/4
-              mt-6
-              px-4
-              py-4
-              bg-white
-              shadow-lg
-              rounded-lg
-              dark:bg-gray-800
-              bg-red-400
-            "
-          >
-            <h3
-              class="
-                text-2xl
-                sm:text-xl
-                text-grey-700
-                font-semibold
-                dark:text-white
-                py-4
-              "
-            >
-              Voice Commands
-            </h3>
-            <p class="text-md text-grey-100 dark:text-gray-300 py-4">
-              Enabled Voice Interativity Using WebKit Speech Recignision To
-              Respond to Basic Commands Like to
-              <span class="font-bold">Start & Stop </span>the Fan.
-            </p>
-          </div>
-        </div>
-        <div class="container mx-auto px-4">
-          <div class="bg-white dark:bg-gray-800">
-            <div
-              class="
-                text-center
-                w-full
-                mx-auto
-                py-12
-                px-4
-                sm:px-6
-                lg:py-16 lg:px-8
-                z-20
-              "
-            >
-              <h2
-                class="
-                  text-2xl
-                  font-bold
-                  text-black
-                  dark:text-white
-                  sm:text-3xl
-                "
-              >
-                <span class="block bg-red-300 py-3">
-                  Circuit Visualization
-                </span>
-              </h2>
-            </div>
-          </div>
-          <p
-            class="
-              text-center
-              font-semibold
-              text-lg text-gray-700
-              md:text-md
-              overflow
-            "
-          >
-            Using The Pinout Diagrams of the
-            <span class="text-blue-400 font-black"
-              >ESP8266 Microcontroller</span
-            >
-            and the
-            <span class="text-red-400 font-black"
-              >DHT11 Temperature and Humidity Sensor</span
-            >
-            Connecting the Circuit<br />
-            Drawing the Virtual Circuit Connection using
-            <span class="text-black font-black">Fritzing</span> Software.
-          </p>
-          <div
-            class="py-5 sm:mb-16 md:mb-0 md:max-w-xl sm:mx-auto md:text-center"
-          >
-            <img
-              src="./public/img/Connection1_bb.png?as=webp"
-              type="image/webp"
-              class="rounded flex-auto max-h-84"
-            />
-            <p class="text-center">
-              Connection Between ESP8266 MicroController and DHT11 Sesnor
-            </p>
-          </div>
-          <div class="flex flex-wrap justify-center gap-4">
-            <div class="flex-col">
-              <img
-                src="./public/img/DHT11–Temperature-Sensor-Pinout-3Pin.jpg?as=webp"
-                type="image/webp"
-                class="rounded flex-auto max-w-xs max-h-72"
-              />
-              <p class="text-center">Pin Diagram of DHT11 Sensor</p>
-            </div>
-            <div class="flex-col">
-              <img
-                src="./public/img/NodeMCU-ESP8266-Pinout.jpg?as=webp"
-                type="image/webp"
-                class="rounded flex-auto max-h-80"
-              />
-              <p class="text-center">Pin Diagram of ESP8266 MicroController</p>
-            </div>
-          </div>
-        </div>
-        <div class="bg-white dark:bg-gray-800">
-          <div
-            class="
-              text-center
-              w-full
-              mx-auto
-              py-12
-              px-4
-              sm:px-6
-              lg:py-16 lg:px-8
-              z-20
-            "
-          >
-            <h2
-              class="
-                text-2xl
-                font-extrabold
-                text-black
-                dark:text-white
-                sm:text-3xl
-              "
-            >
-              <span class="block bg-blue-300 py-3"> Video Simulation </span>
-            </h2>
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <video autoplay playsinline muted loop>
-            <source src="./public/vid/video.mp4" />
-          </video>
-        </div>
-        <div class="bg-white dark:bg-gray-800">
-          <div
-            class="
-              text-center
-              w-full
-              mx-auto
-              py-12
-              px-4
-              sm:px-6
-              lg:py-16 lg:px-8
-              z-20
-            "
-          >
-            <h2
-              class="text-2xl font-bold text-black dark:text-white sm:text-3xl"
-            >
-              <span class="block bg-green-300 py-3">
-                Arduino Baud Monitor
-              </span>
-            </h2>
-          </div>
-        </div>
-        <div class="flex justify-center">
-          <video autoplay playsinline muted loop>
-            <source src="./public/vid/Arduino Baud Monitor.mp4" />
-          </video>
-        </div>
-      </main>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script>
-  </body>
+	<div class="child1">
+CSE2006<br/>Final Review<br /> Team 21</div>
+<div class="team">
+  Siddharth Suresh 20BPS1042 | 
+  Penta Revanth 20BPS1161
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.0/alpine.js"></script>
+</body>
 </html>

@@ -460,8 +460,13 @@ var com="";
 commands.forEach(function (v, i, a) {
   com +=(i+1)+") "+v+" ";
 });
-
-document.getElementById('my-modal-2').onclick = function () {
+let voicestatus = 0;
+document.getElementById('mic').onclick = function () {
+  if (voicestatus == 1) {
+    voicestatus = 0;
+    return recognition.stop();
+  }
+  voicestatus = 1;
   recognition.start();
   document.getElementById("modal-info").textContent =
     "Ready to Receive a Command...";
@@ -470,6 +475,7 @@ document.getElementById('my-modal-2').onclick = function () {
 };
 
 recognition.onresult = function (event) {
+  voicestatus=0;
   // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
   // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
   // It has a getter so it can be accessed like an array
@@ -488,10 +494,21 @@ recognition.onresult = function (event) {
     var start = new SpeechSynthesisUtterance();
     start.text = "Fan Started";
     window.speechSynthesis.speak(start);
-  } else if (command === "stop" && $("#checkcross").is(":checked")) {
+  } 
+  else if(command === "start" && $("#checkcross").is(":checked")){
+    var start = new SpeechSynthesisUtterance();
+    start.text = "Fan Already Started";
+    window.speechSynthesis.speak(start);
+  }
+  else if (command === "stop" && $("#checkcross").is(":checked")) {
     $("#checkcross").trigger("click");
     var stop = new SpeechSynthesisUtterance();
     stop.text = "Fan Stopped";
+    window.speechSynthesis.speak(stop);
+  }
+  else if(command === "stop" && !$("#checkcross").is(":checked")){
+    var stop = new SpeechSynthesisUtterance();
+    stop.text = "Fan Already Stopped";
     window.speechSynthesis.speak(stop);
   }
   else if (command === "increase" && $("#checkcross").is(":checked")) {
@@ -503,6 +520,11 @@ recognition.onresult = function (event) {
     window.speechSynthesis.speak(increase);
 	$('#updateManual').trigger('click');
   }
+  else if(command === "increase" && !$("#checkcross").is(":checked")){
+    var increase = new SpeechSynthesisUtterance();
+    increase.text = "Start the Fan to Increase the Speed";
+    window.speechSynthesis.speak(increase);
+  }
   else if (command === "decrease" && $("#checkcross").is(":checked")) {
 	$("#auto").checked = false;
 	rslider.range.stepDown(); 
@@ -512,19 +534,25 @@ recognition.onresult = function (event) {
     window.speechSynthesis.speak(decrease);
 	$('#updateManual').trigger('click');
   }
+  else if(command === "decrease" && !$("#checkcross").is(":checked")){
+    var decrease = new SpeechSynthesisUtterance();
+    decrease.text = "Start the Fan to Decrease the Speed";
+    window.speechSynthesis.speak(decrease);
+  }
   else if(command === "change mode")
   {
     $("#auto").trigger("click");
     if($("#auto").is(":checked"))
     {
       var mode = new SpeechSynthesisUtterance();
-      mode.text = "Fan Mode is Automatic";
+      mode.text = "Fan Mode is Automatic.";
       window.speechSynthesis.speak(mode);
     }
     else
     {
       var mode = new SpeechSynthesisUtterance();
-      mode.text = "Fan Mode is Manual";
+      var textspeed = rslider.getSpeed();
+      mode.text = "Fan Mode is Manual. Speed of the Fan is Now "+textspeed+"%";
       window.speechSynthesis.speak(mode);
     }
   }
@@ -533,6 +561,7 @@ recognition.onresult = function (event) {
 };
 
 recognition.onspeechend = function () {
+  voicestatus = 0;
   recognition.stop();
 };
   
