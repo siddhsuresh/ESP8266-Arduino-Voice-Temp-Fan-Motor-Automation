@@ -59,7 +59,12 @@ npm run serve
 * Database Conectivity and Logic is present in the **database.js** file in the root directory
 * The Arduino Code That Controls the Logic For the ESP8266 MicroController is present as **sketch_oct19a.ino** file
 
-### Source Code in the Src Directory
+### Source Code in the src Directory
 * Static files [css/javascript/images/videos] are present in their respective public folders and is represented using the static url path in the server
 * index.html contains the source code for the landing page of the project
-* fan.html is the main project page and contains the Socket.IO connection, threeJS Fan Simulation and Temperature and Humidity Display
+* project.html is the main project page and contains the Socket.IO connection, threeJS Fan Simulation and Temperature and Humidity Display
+* home.html is the introductory page for the project and contains the circuit diagram and pictures of the physical connection
+* slides.html is the presentation page made using reveal.js 
+
+### dist Directory 
+The dist directory is created by parcel web packer that contains the minified and compressed versions of the assests in the src directory 
