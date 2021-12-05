@@ -67,5 +67,5 @@ npm run serve
 * home.html is the introductory page for the project and contains the circuit diagram and pictures of the physical connection
 * slides.html is the presentation page made using reveal.js 
 
-### [dist Directory](https://github.com/siddhsuresh/ArduinoVoiceTempControlled/tree/main/dist)
+### Production Ready Assets in [dist Directory](https://github.com/siddhsuresh/ArduinoVoiceTempControlled/tree/main/dist)
 The dist directory is created by parcel web packer that contains the minified and compressed versions of the assests in the src directory 
