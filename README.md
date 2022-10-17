@@ -3,6 +3,8 @@
 ## CSE2006 J Component Final Review
 ### Team 21 - Siddharth Suresh & Penta Revanth
 
+![project](https://user-images.githubusercontent.com/83594610/196259571-8f3a4da7-60aa-4d9f-a246-8993566130e2.png)
+
 ### Hardware Used
 * NodeMCU ESP8266 MicroController
 * DHT11 Temperature and Humidity Sensor
