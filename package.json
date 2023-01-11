@@ -21,7 +21,7 @@
         "@parcel/compressor-gzip": "^2.8.2",
         "@parcel/packager-raw-url": "^2.8.2",
         "@parcel/transformer-webmanifest": "^2.8.2",
-        "@tailwindcss/typography": "^0.5.8",
+        "@tailwindcss/typography": "^0.5.9",
         "autoprefixer": "^10.4.13",
         "daisyui": "^2.46.1",
         "parcel": "^2.8.2",
