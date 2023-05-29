@@ -25,7 +25,7 @@
         "autoprefixer": "^10.4.14",
         "daisyui": "^2.51.6",
         "parcel": "^2.8.3",
-        "postcss": "^8.4.23",
+        "postcss": "^8.4.24",
         "reveal.js": "^4.5.0",
         "sharp": "^0.32.1",
         "tailwindcss": "^3.3.2"
