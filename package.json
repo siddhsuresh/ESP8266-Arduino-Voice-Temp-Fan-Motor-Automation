@@ -27,7 +27,7 @@
         "parcel": "^2.9.3",
         "postcss": "^8.4.26",
         "reveal.js": "^4.5.0",
-        "sharp": "^0.32.3",
+        "sharp": "^0.32.4",
         "tailwindcss": "^3.3.3"
     },
     "scripts": {
