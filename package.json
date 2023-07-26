@@ -23,7 +23,7 @@
         "@parcel/transformer-webmanifest": "^2.9.3",
         "@tailwindcss/typography": "^0.5.9",
         "autoprefixer": "^10.4.14",
-        "daisyui": "^3.4.0",
+        "daisyui": "^3.5.0",
         "parcel": "^2.9.3",
         "postcss": "^8.4.27",
         "reveal.js": "^4.5.0",
