@@ -19,7 +19,7 @@
     "devDependencies": {
         "@parcel/compressor-brotli": "^2.9.3",
         "@parcel/compressor-gzip": "^2.9.3",
-        "@parcel/packager-raw-url": "^2.9.3",
+        "@parcel/packager-raw-url": "^2.10.0",
         "@parcel/transformer-webmanifest": "^2.9.3",
         "@tailwindcss/typography": "^0.5.10",
         "autoprefixer": "^10.4.16",
