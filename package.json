@@ -20,7 +20,7 @@
         "@parcel/compressor-brotli": "^2.10.0",
         "@parcel/compressor-gzip": "^2.10.1",
         "@parcel/packager-raw-url": "^2.10.0",
-        "@parcel/transformer-webmanifest": "^2.10.0",
+        "@parcel/transformer-webmanifest": "^2.10.1",
         "@tailwindcss/typography": "^0.5.10",
         "autoprefixer": "^10.4.16",
         "daisyui": "^3.9.3",
