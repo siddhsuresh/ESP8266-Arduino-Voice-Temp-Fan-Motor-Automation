@@ -24,7 +24,7 @@
         "@tailwindcss/typography": "^0.5.10",
         "autoprefixer": "^10.4.16",
         "daisyui": "^4.0.8",
-        "parcel": "^2.10.2",
+        "parcel": "^2.10.3",
         "postcss": "^8.4.31",
         "reveal.js": "^5.0.2",
         "sharp": "^0.32.6",
