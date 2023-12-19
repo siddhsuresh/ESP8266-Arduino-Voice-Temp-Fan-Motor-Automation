@@ -28,7 +28,7 @@
         "postcss": "^8.4.32",
         "reveal.js": "^5.0.3",
         "sharp": "^0.33.1",
-        "tailwindcss": "^3.3.6"
+        "tailwindcss": "^3.3.7"
     },
     "scripts": {
         "tailwind-dev": "npx tailwindcss -o ./src/public/css/tailwind.css --watch",
