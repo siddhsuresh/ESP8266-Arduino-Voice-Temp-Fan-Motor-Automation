@@ -14,7 +14,7 @@
         "express": "^5.1.0",
         "express-static-gzip": "^3.0.0",
         "socket.io": "^4.7.3",
-        "sqlite3": "^5.1.7"
+        "sqlite3": "^6.0.1"
     },
     "devDependencies": {
         "@parcel/compressor-brotli": "^2.11.0",
